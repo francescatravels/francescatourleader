@@ -17,6 +17,7 @@
   --deep-blue: #1F2F3A;
   --terracotta: #C46A4A;
   --warm-beige: #F3E8DC;
+  --beige-soft: #F8EFE6;
   --soft-gold: #C9A227;
 }
 
@@ -32,27 +33,38 @@ body {
   font-family: 'Montserrat', sans-serif;
   background-color: var(--warm-beige);
   color: var(--deep-blue);
+  line-height: 1.7;
 }
 
-h1, h2 {
+h1, h2, h3 {
   font-family: 'Playfair Display', serif;
 }
 
 section {
-  padding: 90px 20px;
+  padding: 110px 20px;
   max-width: 1100px;
   margin: auto;
 }
 
-.fade {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: 1s ease;
+.alt-section {
+  background-color: var(--beige-soft);
+  border-radius: 20px;
+  padding: 80px 40px;
 }
 
-.fade.visible {
-  opacity: 1;
-  transform: translateY(0);
+h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+h2::after {
+  content: "";
+  width: 60px;
+  height: 2px;
+  background: var(--soft-gold);
+  display: block;
+  margin-top: 10px;
 }
 
 /* ===== NAVBAR ===== */
@@ -120,14 +132,13 @@ section {
 .hero p {
   max-width: 700px;
   font-size: 1.1rem;
-  line-height: 1.6;
   margin-bottom: 30px;
 }
 
 .btn {
   background-color: var(--terracotta);
   color: white;
-  padding: 12px 28px;
+  padding: 14px 30px;
   text-decoration: none;
   border-radius: 30px;
   transition: 0.3s;
@@ -138,15 +149,73 @@ section {
   color: var(--deep-blue);
 }
 
-/* ===== LISTS ===== */
-ul {
-  margin-top: 20px;
-  line-height: 1.8;
+/* ===== CARDS ===== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+  transition: 0.3s;
+  text-align: center;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+}
+
+.card-icon {
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: var(--soft-gold);
+}
+
+/* ===== TWO COLUMNS ===== */
+.two-col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 50px;
+  margin-top: 40px;
+}
+
+.box {
+  background: white;
+  padding: 35px;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+}
+
+/* ===== WHY GRID ===== */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.why-item {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+  transition: 0.3s;
+}
+
+.why-item:hover {
+  transform: translateY(-4px);
 }
 
 /* ===== CONTACT ===== */
 .contact-buttons {
-  margin-top: 30px;
+  margin-top: 40px;
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
@@ -155,7 +224,7 @@ ul {
 .contact-buttons a {
   background-color: var(--deep-blue);
   color: var(--warm-beige);
-  padding: 12px 24px;
+  padding: 14px 28px;
   border-radius: 30px;
   text-decoration: none;
   transition: 0.3s;
@@ -174,6 +243,18 @@ footer {
   font-size: 0.9rem;
 }
 
+/* ===== FADE ===== */
+.fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 1s ease;
+}
+
+.fade.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ===== MOBILE ===== */
 @media(max-width:768px){
   .navbar {
@@ -189,16 +270,14 @@ footer {
 
 <body>
 
-<!-- NAVBAR -->
 <div class="navbar" id="navbar">
   <div class="logo">Francesca Canta</div>
   <div>
-    <a href="#about" data-en="About" data-es="Quién Soy">About</a>
-    <a href="#travel" data-en="Travel Types" data-es="Tipos de Viaje">Travel Types</a>
-    <a href="#incoming" data-en="Incoming" data-es="Incoming">Incoming</a>
-    <a href="#outgoing" data-en="Outgoing" data-es="Outgoing">Outgoing</a>
-    <a href="#why" data-en="Why Me" data-es="Por Qué Yo">Why Me</a>
-    <a href="#contact" data-en="Contact" data-es="Contacto">Contact</a>
+    <a href="#about">About</a>
+    <a href="#travel">Travel Types</a>
+    <a href="#incoming">Services</a>
+    <a href="#why">Why Me</a>
+    <a href="#contact">Contact</a>
   </div>
   <div class="language-switch">
     <img src="https://flagcdn.com/w20/gb.png" onclick="setLanguage('en')" alt="English">
@@ -206,78 +285,65 @@ footer {
   </div>
 </div>
 
-<!-- HERO -->
 <section class="hero">
-  <h1 data-en="Francesca Canta | Licensed Italian Tour Leader"
-      data-es="Francesca Canta | Tour Leader Italiana Habilitada">
-      Francesca Canta | Licensed Italian Tour Leader
-  </h1>
-  <p data-en="I don’t design itineraries — I bring them to life. Supporting Tour Operators, DMCs and private groups with seamless coordination across Italy and abroad."
-     data-es="No diseño itinerarios — les doy vida. Apoyo a Tour Operadores, DMC y grupos privados con coordinación profesional en Italia y en el extranjero.">
-     I don’t design itineraries — I bring them to life.
-  </p>
-  <a href="#contact" class="btn" data-en="Contact Me" data-es="Contáctame">Contact Me</a>
+  <h1>Francesca Canta | Licensed Italian Tour Leader</h1>
+  <p>I don’t design itineraries — I bring them to life. Supporting Tour Operators, DMCs and private groups across Italy and abroad.</p>
+  <a href="#contact" class="btn">Contact Me</a>
 </section>
 
-<!-- ABOUT -->
 <section id="about" class="fade">
-<h2 data-en="Who I Am" data-es="Quién Soy">Who I Am</h2>
-<p data-en="I am a licensed Italian Tour Leader authorized to operate nationwide..."
-   data-es="Soy Tour Leader italiana habilitada para ejercer a nivel nacional...">
-I am a licensed Italian Tour Leader authorized to operate nationwide.
-With over 10 years of experience in hospitality and international customer care,
-I specialize in managing organized travel experiences with professionalism,
-adaptability and attention to detail.
-</p>
+<h2>Who I Am</h2>
+<p>I am a licensed Italian Tour Leader authorized to operate nationwide. With over 10 years of experience in hospitality and international customer care, I specialize in managing organized travel experiences with professionalism, adaptability and attention to detail.</p>
 </section>
 
-<!-- TRAVEL TYPES -->
-<section id="travel" class="fade">
-<h2 data-en="Types of Travel" data-es="Tipos de Viaje">Types of Travel</h2>
-<ul>
-<li>Leisure & Cultural Tours</li>
-<li>Pilgrimages & Religious Routes</li>
-<li>Congress & Corporate Travel</li>
-<li>Thematic & Special Interest Groups</li>
-</ul>
+<section id="travel" class="fade alt-section">
+<h2>Types of Travel</h2>
+<div class="cards">
+<div class="card"><div class="card-icon">✧</div><h3>Leisure & Cultural Tours</h3></div>
+<div class="card"><div class="card-icon">✧</div><h3>Pilgrimages & Religious Routes</h3></div>
+<div class="card"><div class="card-icon">✧</div><h3>Congress & Corporate Travel</h3></div>
+<div class="card"><div class="card-icon">✧</div><h3>Thematic & Special Interest Groups</h3></div>
+</div>
 </section>
 
-<!-- INCOMING -->
 <section id="incoming" class="fade">
-<h2>Incoming – Italy Specialist</h2>
+<h2>Incoming & Outgoing</h2>
+<div class="two-col">
+<div class="box">
+<h3>Incoming – Italy Specialist</h3>
 <ul>
 <li>Airport assistance</li>
 <li>Transfer coordination</li>
 <li>Multi-day group tours</li>
-<li>Double language support (English & Spanish)</li>
+<li>Double language support</li>
 </ul>
-</section>
-
-<!-- OUTGOING -->
-<section id="outgoing" class="fade">
-<h2>Outgoing</h2>
+</div>
+<div class="box">
+<h3>Outgoing</h3>
 <ul>
 <li>European group travel</li>
 <li>Long-haul destinations</li>
 <li>International pilgrimages</li>
-<li>Cross-border group coordination</li>
+<li>Cross-border coordination</li>
 </ul>
+</div>
+</div>
 </section>
 
-<!-- WHY -->
-<section id="why" class="fade">
-<h2 data-en="Why Work With Me" data-es="Por Qué Trabajar Conmigo">Why Work With Me</h2>
-<ul>
-<li>Licensed and nationally authorized Tour Leader</li>
-<li>Multilingual: English & Spanish</li>
-<li>Experienced with international markets</li>
-<li>Reliable, adaptable and solution-oriented</li>
-</ul>
+<section id="why" class="fade alt-section">
+<h2>Why Work With Me</h2>
+<div class="why-grid">
+<div class="why-item">Licensed & Nationally Authorized</div>
+<div class="why-item">Multilingual: English & Spanish</div>
+<div class="why-item">International Market Experience</div>
+<div class="why-item">Strong Hospitality Background</div>
+<div class="why-item">Reliable & Solution-Oriented</div>
+<div class="why-item">Professional & Warm Approach</div>
+</div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact" class="fade">
-<h2 data-en="Let’s Work Together" data-es="Trabajemos Juntos">Let’s Work Together</h2>
+<h2>Let’s Work Together</h2>
 <div class="contact-buttons">
 <a href="https://wa.me/393208495125" target="_blank">WhatsApp</a>
 <a href="mailto:francescacanta9@gmail.com">Email</a>
@@ -290,12 +356,10 @@ Licensed Italian Tour Leader – Operating on assignment from Tour Operators, DM
 
 <script>
 
-/* Navbar scroll */
 window.addEventListener("scroll", function() {
   document.getElementById("navbar").classList.toggle("scrolled", window.scrollY > 50);
 });
 
-/* Fade animation */
 const faders = document.querySelectorAll('.fade');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -305,13 +369,6 @@ const observer = new IntersectionObserver(entries => {
   });
 });
 faders.forEach(fade => observer.observe(fade));
-
-/* Language switch */
-function setLanguage(lang){
-  document.querySelectorAll("[data-en]").forEach(el=>{
-    el.textContent = el.getAttribute("data-" + lang);
-  });
-}
 
 </script>
 
