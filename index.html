@@ -86,7 +86,7 @@ h2::after {
 .hero {
   height:100vh;
   background:linear-gradient(rgba(31,47,58,0.65),rgba(31,47,58,0.85)),
- url('group-lake.jpg')center/cover no-repeat;
+  url('group-lake.jpg') center/cover no-repeat;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -99,6 +99,7 @@ h2::after {
 .hero h1 { font-size:2.6rem; margin-bottom:20px; }
 .hero p { max-width:700px; margin-bottom:30px; }
 
+/* BUTTON */
 .btn {
   background:var(--terracotta);
   color:white;
@@ -139,6 +140,19 @@ h2::after {
   grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
   gap:50px;
   margin-top:40px;
+}
+
+/* GALLERY FIX */
+#gallery .cards {
+  margin-top:30px;
+}
+
+.card img {
+  transition:0.4s;
+}
+
+.card:hover img {
+  transform: scale(1.05);
 }
 
 /* CONTACT */
@@ -193,11 +207,17 @@ Tour Leader for International Groups Across Italy & Europe
 I support Tour Operators and DMCs by managing groups on the ground.
 </p>
 
+<!-- 👇 QUESTA È LA NUOVA RIGA -->
+<p style="margin-top:15px; font-size:0.9rem; opacity:0.8;">
+Licensed • Multilingual • Europe-wide
+</p>
+
 <a href="#contact" class="btn"
    data-en="Contact Me"
    data-es="Contáctame">Contact Me</a>
 
 </section>
+  
 <section id="about">
 
 <h2 data-en="Who I Am" data-es="Quién Soy">Who I Am</h2>
@@ -320,10 +340,9 @@ Cultural group • City coordination • On-site management
 <section id="gallery" class="alt-section">
 
 <h2 data-en="On Tour" data-es="En Viaje">On Tour</h2>
-
-<p data-en="Real experiences. Real groups. Real coordination."
-   data-es="Experiencias reales. Grupos reales. Coordinación real.">
-Real experiences. Real groups. Real coordination.
+<p data-en="Real tours. Real groups. Real coordination."
+   data-es="Tours reales. Grupos reales. Coordinación real.">
+Real tours. Real groups. Real coordination.
 </p>
 
 <p style="margin-top:15px; font-style:italic; opacity:0.8;">
